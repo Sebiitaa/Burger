@@ -1,0 +1,152 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    color: white; /* Aseguramos que el texto sea blanco sobre fondo oscuro */
+}
+
+/* Contenedor principal */
+.container {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para buen contraste */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos */
+h1 {
+    font-size: 24px;
+    color: #ffcc00; /* Color amarillo similar al de Burgershot */
+    font-weight: bold;
+}
+
+/* Estilos para los botones */
+button, .producto-button, #registrar-pedido {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Estilo al pasar el mouse por encima de los botones */
+button:hover, .producto-button:hover, #registrar-pedido:hover {
+    background-color: #ff6600;
+    transform: scale(1.1); /* Efecto de aumentar el tamaño */
+}
+
+/* Estilo al presionar los botones */
+button:active, .producto-button:active, #registrar-pedido:active {
+    background-color: #e65c00;
+    transform: scale(0.95); /* Efecto de reducir el tamaño cuando el botón es presionado */
+}
+
+/* Botones circulares para los combos */
+.producto-button {
+    width: 200px;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Contenedor de opciones de productos */
+.section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #f4f4f4; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra para realce */
+}
+
+.close {
+    color: #333; /* Texto oscuro */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff6600; /* Color resaltado al pasar el mouse */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    color: #ff6600; /* Título destacado */
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #333; /* Texto del comentario */
+    line-height: 1.5;
+}
+
+/* Ajustes para el resumen del pedido */
+#resumen {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* Botón registrar pedido */
+#registrar-pedido {
+    display: inline-block;
+    width: auto;
+    margin: 15px auto;
+    background-color: #0056b3;
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Hover para registrar */
+#registrar-pedido:hover {
+    background-color: #003d80;
+}
+
+/* Detalles adicionales */
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #ccc;
+}

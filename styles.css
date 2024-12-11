@@ -1,0 +1,273 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    color: white; /* Aseguramos que el texto sea blanco sobre fondo oscuro */
+}
+
+/* Contenedor principal */
+.container {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para buen contraste */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos */
+h1 {
+    font-size: 24px;
+    color: #ffcc00; /* Color amarillo similar al de Burgershot */
+    font-weight: bold;
+}
+
+/* Botones circulares para los combos */
+.combo-button {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.combo-button:hover {
+    background-color: #ff6600;
+    transform: scale(1.1); /* Efecto de aumentar el tamaño al pasar el mouse */
+}
+
+.combo-button:active {
+    background-color: #e65c00;
+    transform: scale(0.95); /* Efecto de reducir el tamaño cuando el botón es presionado */
+}
+
+/* Contenedor de opciones de combo */
+#combo-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Lista de productos */
+#productos-list {
+    text-align: left;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    color: #ffcc00; /* Color amarillo para los nombres de los productos */
+}
+
+/* Modal de productos */
+#producto-modal {
+    display: none;
+}
+
+/* Estilo del pedido y botones adicionales */
+#pedido-combo {
+    margin-top: 30px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold; /* Negrita para mayor visibilidad */
+}
+
+.actions {
+    margin-top: 30px;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    color: white; /* Aseguramos que el texto sea blanco sobre fondo oscuro */
+}
+
+/* Contenedor principal */
+.container {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para buen contraste */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos */
+h1 {
+    font-size: 24px;
+    color: #ffcc00; /* Color amarillo similar al de Burgershot */
+    font-weight: bold;
+}
+
+/* Estilos para los botones */
+button, .combo-button, #registrar-pedido, #calcular-total, select {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Estilo al pasar el mouse por encima de los botones */
+button:hover, .combo-button:hover, #registrar-pedido:hover, #calcular-total:hover, select:hover {
+    background-color: #ff6600;
+    transform: scale(1.1); /* Efecto de aumentar el tamaño */
+}
+
+/* Estilo al presionar los botones */
+button:active, .combo-button:active, #registrar-pedido:active, #calcular-total:active, select:active {
+    background-color: #e65c00;
+    transform: scale(0.95); /* Efecto de reducir el tamaño cuando el botón es presionado */
+}
+
+/* Botones circulares para los combos */
+.combo-button {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Contenedor de opciones de combo */
+#combo-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Lista de productos */
+#productos-list {
+    text-align: left;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    color: #ffcc00; /* Color amarillo para los nombres de los productos */
+}
+
+/* Modal de productos */
+#producto-modal {
+    display: none;
+}
+
+/* Estilo del pedido y botones adicionales */
+#pedido-combo {
+    margin-top: 30px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold; /* Negrita para mayor visibilidad */
+}
+
+.actions {
+    margin-top: 30px;
+}
+
+/* Estilos adicionales para los selectores */
+select {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+select:hover {
+    background-color: #ff6600;
+}
+

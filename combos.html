@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<button onclick="redirigirAIndex()">Volver al Menú Principal</button>
+<body>
+    <div class="container">
+        <h1>Seleccionar Combo</h1>
+        
+        <!-- Opciones de Combo -->
+        <div class="combo-section">
+            <button id="combo-principal-btn" class="btn">Combo Principal</button>
+            <button id="combo-entrante-btn" class="btn">Combo Entrante</button>
+        </div>
+
+        <!-- Selección de Productos -->
+        <div id="productos-section" class="hidden">
+            <h2>Selecciona un Producto</h2>
+            <div id="productos-list" class="producto-list"></div>
+            <button id="cerrar-productos" class="btn">Cerrar</button>
+        </div>
+
+        <!-- Selección de Bebidas -->
+        <div id="bebidas-section" class="hidden">
+            <h2>Selecciona una Bebida</h2>
+            <div id="bebidas-list" class="bebida-list"></div>
+            <button id="cerrar-bebidas" class="btn">Cerrar</button>
+        </div>
+
+        <!-- Resumen del Pedido -->
+        <div id="pedido-section">
+            <h2>Resumen del Pedido</h2>
+            <div id="pedido-list"></div>
+            <p id="total-pedido"></p>
+            <label for="convenio">Convenio:</label>
+            <select id="convenio">
+                <option value="default">Sin Convenio</option>
+                <option value="LSPD">LSPD, FIB, SAFD, BCSO, SAMS</option>
+                <option value="BENNYS">BENNYS</option>
+                <option value="24/7">24/7 y STARWALKS</option>
+                <option value="24/7especial">24/7 Especial</option>
+            </select>
+            <button id="calcular-total" class="btn">Calcular Total</button>
+            <button id="registrar-pedido" class="btn">Registrar Pedido</button>
+        </div>
+    </div>
+
+    <script src="combo.js"></script>
+</body>
+</html>
+
+
+
