@@ -1,33 +1,92 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background: url('fondo.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: url('fondo.jpg') no-repeat center center fixed; /* Imagen de fondo */
+    background-size: cover; /* Asegura que la imagen ocupe toda la pantalla */
+    color: white;
     text-align: center;
     padding: 0;
     margin: 0;
-    color: white; /* Aseguramos que el texto sea blanco sobre fondo oscuro */
+    height: 100vh; /* Asegura que ocupe toda la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative; /* Necesario para la capa semitransparente */
+}
+
+/* Capa translúcida sobre la imagen */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Capa negra translúcida (60% opacidad) */
+    z-index: -1; /* Coloca la capa detrás del contenido */
 }
 
 /* Contenedor principal */
 .container {
-    margin: 20px auto;
     max-width: 600px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para buen contraste */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para contraste */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
 }
 
 /* Títulos */
 h1 {
     font-size: 24px;
-    color: #ffcc00; /* Color amarillo similar al de Burgershot */
+    color: #ffcc00; /* Amarillo */
     font-weight: bold;
 }
 
-/* Estilos para los botones */
-button, .producto-button, #registrar-pedido {
+/* Lista de productos seleccionados */
+#productos-list {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro más opaco */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+    color: #ffcc00; /* Amarillo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Botones circulares para los combos */
+.combo-button {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Centrado de botones */
+#combo-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* Estilos para los botones generales */
+button, .combo-button, select {
     background-color: #333;
     color: white;
     padding: 10px;
@@ -40,113 +99,76 @@ button, .producto-button, #registrar-pedido {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Estilo al pasar el mouse por encima de los botones */
-button:hover, .producto-button:hover, #registrar-pedido:hover {
+/* Hover y active en botones */
+button:hover, .combo-button:hover, select:hover {
     background-color: #ff6600;
-    transform: scale(1.1); /* Efecto de aumentar el tamaño */
+    transform: scale(1.1);
 }
 
-/* Estilo al presionar los botones */
-button:active, .producto-button:active, #registrar-pedido:active {
+button:active, .combo-button:active, select:active {
     background-color: #e65c00;
-    transform: scale(0.95); /* Efecto de reducir el tamaño cuando el botón es presionado */
-}
-
-/* Botones circulares para los combos */
-.producto-button {
-    width: 200px;
-    height: 50px;
-    display: inline-block;
-    text-align: center;
-}
-
-/* Contenedor de opciones de productos */
-.section {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    transform: scale(0.95);
 }
 
 /* Modal */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+    background-color: rgba(0, 0, 0, 0.5); /* Oscurece fondo */
 }
 
 .modal-content {
-    background-color: #f4f4f4; /* Fondo claro */
-    color: #333; /* Texto oscuro */
+    background-color: white;
     margin: 15% auto;
     padding: 20px;
     border-radius: 10px;
     width: 80%;
     max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra para realce */
 }
 
+/* Estilo del botón cerrar modal */
 .close {
-    color: #333; /* Texto oscuro */
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-    color: #ff6600; /* Color resaltado al pasar el mouse */
-    text-decoration: none;
-    cursor: pointer;
+    color: black;
 }
 
-.modal-content h3 {
-    color: #ff6600; /* Título destacado */
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    color: #333; /* Texto del comentario */
-    line-height: 1.5;
-}
-
-/* Ajustes para el resumen del pedido */
-#resumen {
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-/* Botón registrar pedido */
-#registrar-pedido {
-    display: inline-block;
-    width: auto;
-    margin: 15px auto;
-    background-color: #0056b3;
+/* Pedido y botones adicionales */
+#pedido-combo {
+    margin-top: 30px;
+    font-size: 20px;
     color: white;
-    font-size: 18px;
-    padding: 12px 25px;
-    border-radius: 5px;
     font-weight: bold;
 }
 
-/* Hover para registrar */
-#registrar-pedido:hover {
-    background-color: #003d80;
+.actions {
+    margin-top: 30px;
 }
 
-/* Detalles adicionales */
-footer {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #ccc;
+/* Estilo adicional para select */
+select {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+select:hover {
+    background-color: #ff6600;
 }

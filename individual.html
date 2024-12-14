@@ -1,72 +1,115 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido de Comida</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="styles2.css">
 </head>
-<button onclick="redirigirAIndex()">Volver al Menú Principal</button>
-
 <body>
-    <div class="container">
-        <h1>Seleccione su Pedido</h1>
-        <div id="productos-list">
-            <!-- Lista de productos -->
+    <div class="menu-container">
+        <button class="menu-button" data-modal="modal-starters">Starters</button>
+        <button class="menu-button" data-modal="modal-burgers">Hamburgers</button>
+        <button class="menu-button" data-modal="modal-desserts">Desserts</button>
+        <button class="menu-button" data-modal="modal-drinks">Drinks</button>
+    </div>
+
+    <!-- Modals for selecting products -->
+    <div id="modal-starters" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-starters">&times;</span>
             <h2>Starters</h2>
-            <button class="product-btn" onclick="agregarProducto('Chicken wings')">Chicken wings - $7</button>
-            <button class="product-btn" onclick="agregarProducto('Cheese pops')">Cheese pops - $6</button>
-            <button class="product-btn" onclick="agregarProducto('Salad')">Salad - $6</button>
-            <button class="product-btn" onclick="agregarProducto('Chips')">Chips - $6</button>
-
-            <h2>Hamburguesas y Hot Dogs</h2>
-            <button class="product-btn" onclick="agregarProducto('Crispy')">Crispy - $8</button>
-            <button class="product-btn" onclick="agregarProducto('Pecadora')">Pecadora - $8</button>
-            <button class="product-btn" onclick="agregarProducto('The Donut')">The Donut - $8</button>
-            <button class="product-btn" onclick="agregarProducto('The Hulk')">The Hulk - $8</button>
-            <button class="product-btn" onclick="agregarProducto('Super Hot')">Super Hot - $8</button>
-
-            <h2>Bebidas</h2>
-            <button class="product-btn" onclick="agregarProducto('Batido de fresa')">Batido fresa - $8</button>
-            <button class="product-btn" onclick="agregarProducto('Batido de vainilla')">Batido vainilla - $8</button>
-            <button class="product-btn" onclick="agregarProducto('Batido de chocolate')">Batido chocolate - $8</button>
-            <button class="product-btn" onclick="agregarProducto('Soda de cola')">Soda cola - $7</button>
-            <button class="product-btn" onclick="agregarProducto('Soda de naranja')">Soda naranja - $7</button>
-            <button class="product-btn" onclick="agregarProducto('Soda de limón')">Soda limón - $7</button>
-
-            <h2>Postres</h2>
-            <button class="product-btn" onclick="agregarProducto('Chocookie')">Chocookie - $6</button>
-            <button class="product-btn" onclick="agregarProducto('Brownie')">Brownie - $6</button>
-            <button class="product-btn" onclick="agregarProducto('Conazo')">Conazo - $7</button>
-        </div>
-
-        <div id="pedido-combo">
-            <h2>Pedido</h2>
-            <div id="resumen"></div>
-            <p id="total">Total: $0.00</p>
-            <button id="registrar-pedido" onclick="registrarPedido()">Registrar Compra</button>
-
-            <!-- Botón para seleccionar convenio -->
-            <div>
-                <h3>Seleccionar Convenio:</h3>
-                <button onclick="seleccionarConvenio('LSPD')">LSPD</button>
-                <button onclick="seleccionarConvenio('BENNYS')">BENNYS</button>
-                <button onclick="seleccionarConvenio('24/7')">24/7</button>
-                <button onclick="seleccionarConvenio('STARWALKS')">STARWALKS</button>
-                <button onclick="seleccionarConvenio('24/7 Especial')">24/7 Especial</button>
-            </div>
-        </div>
-
-        <div id="modal-comentario" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="cerrarModal()">&times;</span>
-                <h3>Resumen de Pedido</h3>
-                <p id="comentario-pedido"></p>
-                <button onclick="copiarComentario()">Copiar Comentario</button>
+            <div class="product-options">
+                <button class="product-button" data-product="Chicken Wings - $7">Chicken Wings - $7</button>
+                <button class="product-button" data-product="Cheese Pops - $6">Cheese Pops - $6</button>
+                <button class="product-button" data-product="Salad - $6">Salad - $6</button>
+                <button class="product-button" data-product="Chips - $6">Chips - $6</button>
             </div>
         </div>
     </div>
 
+    <div id="modal-burgers" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-burgers">&times;</span>
+            <h2>Hamburgers</h2>
+            <div class="product-options">
+                <button class="product-button" data-product="Crispy - $8">Crispy - $8</button>
+                <button class="product-button" data-product="Pecadora - $8">Pecadora - $8</button>
+                <button class="product-button" data-product="The Donut - $8">The Donut - $8</button>
+                <button class="product-button" data-product="The Hulk - $8">The Hulk - $8</button>
+                <button class="product-button" data-product="Super Hot - $8">Super Hot - $8</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-drinks" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-drinks">&times;</span>
+            <h2>Drinks</h2>
+            <div class="product-options">
+                <button class="product-button" data-product="Batido Fresa - $8">Batido Fresa - $8</button>
+                <button class="product-button" data-product="Batido Vainilla - $8">Batido Vainilla - $8</button>
+                <button class="product-button" data-product="Batido Chocolate - $8">Batido Chocolate - $8</button>
+                <button class="product-button" data-product="Soda de Cola - $7">Soda de Cola - $7</button>
+                <button class="product-button" data-product="Soda de Naranja - $7">Soda de Naranja - $7</button>
+                <button class="product-button" data-product="Soda de Limón - $7">Soda de Limón - $7</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Desserts -->
+    <div id="modal-desserts" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-desserts">&times;</span>
+            <h2>Desserts</h2>
+            <div class="product-options">
+                <button class="product-button" data-product="Chocookie - $6">Chocookie - $6</button>
+                <button class="product-button" data-product="Brownie - $6">Brownie - $6</button>
+                <button class="product-button" data-product="Conazo - $7">Conazo - $7</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h3>Productos seleccionados</h3>
+        <ul id="product-list"></ul>
+        <p id="total">Total de factura: $0</p>
+    </div>
+
+
+    <!-- Botones de acción -->
+    <div id="action-buttons">
+        <button id="register-button">Registrar compra</button>
+        <button id="download-all-button">Descargar todo</button>
+        <button id="calculate-combo">Calcular con Combo</button>
+    </div>
+
+    <!-- Botón para seleccionar convenio -->
+    <div id="convenio-container">
+        <label for="convenio-select">Seleccionar convenio:</label>
+        <select id="convenio-select">
+            <option value="NO">Ninguno</option>
+            <option value="LSPD_FIB_SAFD_BCSO_SAMS">LSPD, FIB, SAFD, BCSO, SAMS</option>
+            <option value="BENNYS">BENNYS</option>
+            <option value="24_7_STARWALKS">24/7 y STARWALKS</option>
+            <option value="24_7_ESPECIAL">24/7 especial</option>
+        </select>
+    </div>
+
+    <button id="regresar-btn" onclick="regresarAlInicio()">Regresar al Inicio</button>
+
+    <!-- Modal para mostrar el comentario -->
+    <div id="modal-comment" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-comment">&times;</span>
+            <h2>Comentario de la Compra</h2>
+            <textarea id="comment-text" readonly style="width: 100%; height: 200px; margin-bottom: 20px;"></textarea>
+            <button id="copy-comment">Copiar comentario</button>
+        </div>
+    </div>
+
     <script src="individual.js"></script>
+    <script src="consulta.js"></script> <!-- Este archivo maneja la lógica relacionada con convenios -->
+    <script src="consultaConvenios.js"></script> <!-- Aquí se conecta el archivo consultaConvenio.js -->
 </body>
 </html>
