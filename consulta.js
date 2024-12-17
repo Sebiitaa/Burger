@@ -101,15 +101,10 @@ function calcularCombos(cartItems) {
     ];
     const bebidasRestantes = resultadoPostre.bebidasRestantes;
 
-    // Calcular el total de los productos restantes y aplicar el descuento de $1 en productos no combinados
+    // Calcular el total de los productos restantes
     productosRestantes.forEach(item => {
         let precioUnitario = PRODUCTO_PRECIOS[item.name];
         total += item.quantity * precioUnitario;
-
-        // Aplicar descuento de $1 en productos individuales no combinados en un combo
-        if (item.quantity > 0 && item.name !== 'Pecadora' && item.name !== 'The Hulk' && item.name !== 'Crispy' && item.name !== 'Super Hot' && item.name !== 'The Donut') {
-            total -= item.quantity;  // Descuento de $1 por producto adicional
-        }
 
         detallesFactura.push(`${item.quantity}x ${item.name} - $${(item.quantity * precioUnitario).toFixed(2)}`);
     });
@@ -119,25 +114,6 @@ function calcularCombos(cartItems) {
         total += item.quantity * precioUnitario;
         detallesFactura.push(`${item.quantity}x ${item.name} - $${(item.quantity * precioUnitario).toFixed(2)}`);
     });
-
-    // Obtener el convenio seleccionado
-    const convenioSeleccionado = document.getElementById('convenio-select').value;
-
-    // Aplicar descuentos según el convenio seleccionado
-    if (convenioSeleccionado === 'LSPD_FIB_SAFD_BCSO_SAMS') {
-        total = total - 5; // Descuento de $5 por convenio LSPD
-    } else if (convenioSeleccionado === 'BENNYS') {
-        total = total - 10; // Descuento de $10 por convenio BENNYS
-    } else if (convenioSeleccionado === '24_7_STARWALKS') {
-        total = total - 5; // Descuento de $5 por convenio 24/7 y STARWALKS
-    } else if (convenioSeleccionado === '24_7_ESPECIAL') {
-        // Solo aplicar el combo especial 5 cookies + 5 bebidas por $55
-        if (productosRestantes.some(item => item.name === 'Chocookie') && bebidasRestantes.length >= 5) {
-            total = 55; // Combo especial de cookies y bebidas por $55
-        } else {
-            total = total - 10; // Descuento de $10 por convenio 24/7 especial si no se cumple el combo exacto
-        }
-    }
 
     // Actualizar el total en el HTML
     document.getElementById('total').textContent = `Total de factura: $${total.toFixed(2)}`;
