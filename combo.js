@@ -30,18 +30,15 @@ const productosSection = document.getElementById("productos-section");
 const bebidasSection = document.getElementById("bebidas-section");
 const productosLista = document.getElementById("productos-list");
 const bebidasLista = document.getElementById("bebidas-list");
-const closeProductosBtn = document.getElementById("cerrar-productos");
-const closeBebidasBtn = document.getElementById("cerrar-bebidas");
-const convenioSelect = document.getElementById("convenio");
 const pedidoLista = document.getElementById("pedido-list");
 const totalCombo = document.getElementById("total-pedido");
 const registrarVentaBtn = document.getElementById("registrar-pedido");
 const calcularTotalBtn = document.getElementById("calcular-total");
+const convenioSelect = document.getElementById("convenio");
+const cantidadCombosInput = document.getElementById("cantidad-combos");
 
-// Variables globales
 let tipoCombo = ""; // "entrante" o "principal"
-let productoSeleccionado = null;
-let bebidaSeleccionada = null;
+let combosSeleccionados = []; // Arreglo para almacenar los combos seleccionados
 
 // Mostrar lista de productos
 function mostrarProductos(tipo) {
@@ -70,51 +67,80 @@ function mostrarBebidas() {
 
 // Seleccionar producto
 function seleccionarProducto(producto) {
-    productoSeleccionado = producto;
+    const combo = { producto, bebida: null }; // Crear un combo vacío
+    combosSeleccionados.push(combo); // Añadir el combo a la lista de combos seleccionados
     productosSection.classList.add("hidden");
     mostrarBebidas();
 }
 
 // Seleccionar bebida
 function seleccionarBebida(bebida) {
-    bebidaSeleccionada = bebida;
+    const ultimoCombo = combosSeleccionados[combosSeleccionados.length - 1];
+    if (ultimoCombo) {
+        ultimoCombo.bebida = bebida; // Asignar bebida al último combo seleccionado
+    }
     bebidasSection.classList.add("hidden");
     actualizarPedido();
 }
 
 // Actualizar el pedido
 function actualizarPedido() {
-    if (!productoSeleccionado || !bebidaSeleccionada) return;
+    pedidoLista.innerHTML = ""; // Limpiar la lista de pedidos
+    let total = 0;
 
-    const precioCombo = tipoCombo === "entrante" ? 60 : 70;
-    let total = precioCombo;
+    // Iterar sobre los combos seleccionados y mostrar detalles
+    combosSeleccionados.forEach((combo, index) => {
+        if (combo.producto && combo.bebida) {
+            const cantidadCombos = parseInt(cantidadCombosInput.value) || 1;
+            let precioCombo = tipoCombo === "entrante" ? 60 : 70;
 
-    // Aplicar convenio si corresponde
-    const convenio = convenioSelect.value;
-    if (convenio === "LSPD") {
-        total = tipoCombo === "principal" ? 65 : total;
-    } else if (convenio === "BENNYS" && tipoCombo === "entrante") {
-        total = 50;
-    } else if (convenio === "BENNYS" && tipoCombo === "principal") {
-        total = 60;
-    } else if (convenio === "24/7" && tipoCombo === "entrante") {
-        total = 55;
-    } else if (convenio === "24/7" && tipoCombo === "principal") {
-        total = 65;
-    }
+            // Aplicar convenio si corresponde
+            const convenio = convenioSelect.value;
+            if (convenio === "LSPD") {
+                precioCombo = tipoCombo === "principal" ? 65 : precioCombo;
+            } else if (convenio === "BENNYS" && tipoCombo === "entrante") {
+                precioCombo = 50;
+            } else if (convenio === "BENNYS" && tipoCombo === "principal") {
+                precioCombo = 60;
+            } else if (convenio === "24/7" && tipoCombo === "entrante") {
+                precioCombo = 55;
+            } else if (convenio === "24/7" && tipoCombo === "principal") {
+                precioCombo = 65;
+            }
 
-    // Mostrar en el resumen
-    pedidoLista.textContent = `Producto: ${productoSeleccionado.nombre} + Bebida: ${bebidaSeleccionada.nombre}`;
+            // Mostrar el combo en el resumen
+            total += precioCombo * cantidadCombos;
+            const comboDiv = document.createElement("div");
+            comboDiv.textContent = `Combo ${index + 1}: ${combo.producto.nombre} + ${combo.bebida.nombre} x ${cantidadCombos} combos`;
+            const borrarBtn = document.createElement("button");
+            borrarBtn.textContent = "Eliminar";
+            borrarBtn.onclick = () => eliminarCombo(index); // Función para eliminar el combo
+            comboDiv.appendChild(borrarBtn);
+            pedidoLista.appendChild(comboDiv);
+        }
+    });
+
+    // Mostrar el total
     totalCombo.textContent = `Total de la factura: $${total}`;
+}
+
+// Eliminar combo
+function eliminarCombo(index) {
+    combosSeleccionados.splice(index, 1); // Eliminar el combo de la lista
+    actualizarPedido(); // Actualizar la vista del pedido
 }
 
 // Registrar venta
 function registrarVenta() {
-    if (!productoSeleccionado || !bebidaSeleccionada) {
-        alert("Por favor selecciona un producto y una bebida antes de registrar la venta.");
+    if (combosSeleccionados.length === 0) {
+        alert("Por favor selecciona al menos un combo antes de registrar la venta.");
         return;
     }
-    const resumen = `Producto: ${productoSeleccionado.nombre} + Bebida: ${bebidaSeleccionada.nombre}\nTotal de la factura: $${totalCombo.textContent.split("$")[1]}`;
+    let resumen = "";
+    combosSeleccionados.forEach((combo, index) => {
+        resumen += `Combo ${index + 1}: ${combo.producto.nombre} + ${combo.bebida.nombre}\n`;
+    });
+    resumen += `Total de la factura: $${totalCombo.textContent.split("$")[1]}`;
     alert("Venta registrada:\n" + resumen);
 }
 
@@ -127,11 +153,10 @@ comboPrincipalBtn.onclick = () => {
     tipoCombo = "principal";
     mostrarProductos("principal");
 };
-closeProductosBtn.onclick = () => productosSection.classList.add("hidden");
-closeBebidasBtn.onclick = () => bebidasSection.classList.add("hidden");
-registrarVentaBtn.onclick = registrarVenta;
 calcularTotalBtn.onclick = actualizarPedido;
+registrarVentaBtn.onclick = registrarVenta;
+
 // Redireccionar al index.html
 function redirigirAIndex() {
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
 }

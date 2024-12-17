@@ -6,7 +6,6 @@
     <title>Combo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<button onclick="redirigirAIndex()">Volver al Menú Principal</button>
 <body>
     <div class="container">
         <h1>Seleccionar Combo</h1>
@@ -21,14 +20,12 @@
         <div id="productos-section" class="hidden">
             <h2>Selecciona un Producto</h2>
             <div id="productos-list" class="producto-list"></div>
-            <button id="cerrar-productos" class="btn">Cerrar</button>
         </div>
 
         <!-- Selección de Bebidas -->
         <div id="bebidas-section" class="hidden">
             <h2>Selecciona una Bebida</h2>
             <div id="bebidas-list" class="bebida-list"></div>
-            <button id="cerrar-bebidas" class="btn">Cerrar</button>
         </div>
 
         <!-- Resumen del Pedido -->
@@ -36,6 +33,11 @@
             <h2>Resumen del Pedido</h2>
             <div id="pedido-list"></div>
             <p id="total-pedido"></p>
+
+            <!-- Campo para seleccionar la cantidad de combos -->
+            <label for="cantidad-combos">Cantidad de Combos:</label>
+            <input type="number" id="cantidad-combos" value="1" min="1">
+
             <label for="convenio">Convenio:</label>
             <select id="convenio">
                 <option value="default">Sin Convenio</option>
@@ -44,8 +46,10 @@
                 <option value="24/7">24/7 y STARWALKS</option>
                 <option value="24/7especial">24/7 Especial</option>
             </select>
+
             <button id="calcular-total" class="btn">Calcular Total</button>
             <button id="registrar-pedido" class="btn">Registrar Pedido</button>
+            <button onclick="redirigirAIndex()">Volver al Menú Principal</button>
         </div>
     </div>
 
